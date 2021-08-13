@@ -8,20 +8,18 @@ const DatePickerComponent: React.FC<Props> = ({
   onChange,
   mode,
   toggleVisibility,
-  textColor = '#111',
-  ...props
+  textColor = "#111",
 }) => {
   return (
     <DateTimePicker
       value={value}
       mode={mode}
       onChange={(_event: any, data: any) => {
-        Platform.OS === 'ios' ? null : toggleVisibility();
+        Platform.OS === "ios" ? null : toggleVisibility();
         onChange(null, data);
       }}
-      display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+      display={Platform.OS === "ios" ? "spinner" : "default"}
       textColor={textColor}
-      {...props}
     />
   );
 };
