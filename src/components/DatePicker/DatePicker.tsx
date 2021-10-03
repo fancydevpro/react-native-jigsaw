@@ -1,5 +1,13 @@
 import * as React from "react";
-import { View, StyleSheet, StyleProp, ViewStyle, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  Platform,
+  Appearance,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import dateFormat from "dateformat";
@@ -26,6 +34,7 @@ interface Props extends TextFieldProps {
   onDateChange?: (data?: any) => void;
   disabled?: boolean;
   mode?: "date" | "time" | "datetime";
+  backgroundColorIOS?: string;
 }
 
 const MONTHS = [
@@ -51,6 +60,7 @@ const DatePicker: React.FC<Props> = ({
   disabled = false,
   mode = "date",
   format,
+  backgroundColorIOS = "rgba(35, 43, 63, 0.9)",
   ...props
 }) => {
   const [pickerVisible, setPickerVisible] = React.useState(false);
@@ -99,8 +109,14 @@ const DatePicker: React.FC<Props> = ({
           <View
             style={[
               styles.picker,
+              Platform.OS === "ios" && styles.iosPicker,
               {
-                backgroundColor: colors.divider,
+                backgroundColor:
+                  Platform.OS === "ios"
+                    ? backgroundColorIOS
+                    : Appearance.getColorScheme() === "light"
+                    ? colors.divider
+                    : colors.medium,
               },
             ]}
           >
@@ -108,33 +124,54 @@ const DatePicker: React.FC<Props> = ({
               style={[
                 styles.pickerContainer,
                 {
-                  paddingTop: insets.top,
-                  paddingBottom: insets.bottom,
+                  paddingTop: 0,
+                  paddingBottom: 0,
                   paddingLeft: insets.left,
                   paddingRight: insets.right,
                 },
               ]}
             >
               {Platform.OS === "ios" && (
-                <Button
-                  type="text"
-                  onPress={toggleVisibility}
-                  style={styles.closeButton}
-                >
-                  Close
-                </Button>
+                <TouchableWithoutFeedback onPress={toggleVisibility}>
+                  <View style={styles.iosOverlay} />
+                </TouchableWithoutFeedback>
               )}
 
-              <DateTimePicker
-                value={date}
-                mode={mode}
-                isVisible={pickerVisible}
-                toggleVisibility={toggleVisibility}
-                onChange={(_event: any, data: any) => {
-                  Platform.OS === "ios" ? null : toggleVisibility();
-                  onDateChange(data);
+              <View
+                style={{
+                  paddingTop: insets.top,
+                  paddingBottom: insets.bottom,
+                  backgroundColor:
+                    Appearance.getColorScheme() === "light"
+                      ? colors.divider
+                      : colors.medium,
                 }}
-              />
+              >
+                {Platform.OS === "ios" && (
+                  <Button
+                    type="text"
+                    onPress={toggleVisibility}
+                    style={styles.closeButton}
+                    labelColor={
+                      Appearance.getColorScheme() === "dark"
+                        ? colors.divider
+                        : colors.primary
+                    }
+                  >
+                    Close
+                  </Button>
+                )}
+                <DateTimePicker
+                  value={date}
+                  mode={mode}
+                  isVisible={pickerVisible}
+                  toggleVisibility={toggleVisibility}
+                  onChange={(_event: any, data: any) => {
+                    Platform.OS === "ios" ? null : toggleVisibility();
+                    onDateChange(data);
+                  }}
+                />
+              </View>
             </View>
           </View>
         </Portal>
@@ -155,7 +192,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
+  iosPicker: {
+    top: 0,
+  },
   pickerContainer: { flexDirection: "column", width: "100%" },
+  iosOverlay: {
+    flex: 1,
+  },
   closeButton: {
     alignSelf: "flex-end",
   },
