@@ -13,10 +13,10 @@ import { ResizeModeType } from "./ResizeMode";
 
 interface Props {
   theme: typeof theme;
-  useThemeGutterPadding: boolean;
-  borderColor: string;
-  borderWidth: number;
-  backgroundColor: string;
+  useThemeGutterPadding?: boolean;
+  borderColor?: string;
+  borderWidth?: number;
+  backgroundColor?: string;
   backgroundImage?: string | Blob;
   backgroundImageResizeMode?: ResizeModeType;
   elevation?: number;
