@@ -168,7 +168,7 @@ const Button: React.FC<Props> = ({
               style={iconStyle}
             />
           ) : null}
-          <Text numberOfLines={1} style={[textStyle, typography.button]}>
+          <Text style={[textStyle, typography.button]}>
             {children}
           </Text>
         </View>
