@@ -12,7 +12,7 @@ import {
   TextInputChangeEventData,
   ViewStyle,
   TextStyle,
-  LayoutChangeEvent,
+  // LayoutChangeEvent,
   ImageStyle,
 } from "react-native";
 import { withTheme } from "../core/theming";
@@ -235,14 +235,14 @@ class TextField extends React.Component<Props> {
       ...rest
     } = this.props;
 
-    const MINIMIZED_LABEL_Y_OFFSET = -(
-      typography.caption.lineHeight + spacing.text
-    );
-    const OUTLINE_MINIMIZED_LABEL_Y_OFFSET = -(
-      spacing.large * 0.5 +
-      spacing.text
-    );
-    const MAXIMIZED_LABEL_FONT_SIZE = typography.subtitle1.fontSize;
+    // const MINIMIZED_LABEL_Y_OFFSET = -(
+    //   typography.caption.lineHeight + spacing.text
+    // );
+    // const OUTLINE_MINIMIZED_LABEL_Y_OFFSET = -(
+    //   spacing.large * 0.5 +
+    //   spacing.text
+    // );
+    // const MAXIMIZED_LABEL_FONT_SIZE = typography.subtitle1.fontSize;
     const MINIMIZED_LABEL_FONT_SIZE = typography.caption.fontSize;
 
     const hasActiveOutline = this.state.focused || error;
