@@ -356,46 +356,47 @@ class TextField extends React.Component<Props> {
 
     const labelStyle = {
       ...typography.subtitle1,
-      top: type === "solid" ? spacing.large : 0,
-      left:
-        leftIconName && leftIconMode === "inset"
-          ? ICON_SIZE + (type === "solid" ? spacing.large : spacing.medium)
-          : 0,
-      transform: [
-        {
-          // Move label to top
-          translateY: this.state.labeled.interpolate({
-            inputRange: [0, 1],
-            outputRange: [
-              type === "solid"
-                ? OUTLINE_MINIMIZED_LABEL_Y_OFFSET
-                : MINIMIZED_LABEL_Y_OFFSET,
-              0,
-            ],
-          }),
-        },
-        {
-          // Make label smaller
-          scale: this.state.labeled.interpolate({
-            inputRange: [0, 1],
-            outputRange: [
-              MINIMIZED_LABEL_FONT_SIZE / MAXIMIZED_LABEL_FONT_SIZE,
-              1,
-            ],
-          }),
-        },
-        {
-          // Offset label scale since RN doesn't support transform origin
-          translateX: this.state.labeled.interpolate({
-            inputRange: [0, 1],
-            outputRange: [
-              -(1 - MINIMIZED_LABEL_FONT_SIZE / MAXIMIZED_LABEL_FONT_SIZE) *
-                (this.state.labelLayout.width / 2),
-              0,
-            ],
-          }),
-        },
-      ],
+      lineHeight: typography.subtitle1.fontSize * 1.18,
+      // top: type === "solid" ? spacing.large : 0,
+      // left:
+      //   leftIconName && leftIconMode === "inset"
+      //     ? ICON_SIZE + (type === "solid" ? spacing.large : spacing.medium)
+      //     : 0,
+      // transform: [
+      //   {
+      //     // Move label to top
+      //     translateY: this.state.labeled.interpolate({
+      //       inputRange: [0, 1],
+      //       outputRange: [
+      //         type === "solid"
+      //           ? OUTLINE_MINIMIZED_LABEL_Y_OFFSET
+      //           : MINIMIZED_LABEL_Y_OFFSET,
+      //         0,
+      //       ],
+      //     }),
+      //   },
+      //   {
+      //     // Make label smaller
+      //     scale: this.state.labeled.interpolate({
+      //       inputRange: [0, 1],
+      //       outputRange: [
+      //         MINIMIZED_LABEL_FONT_SIZE / MAXIMIZED_LABEL_FONT_SIZE,
+      //         1,
+      //       ],
+      //     }),
+      //   },
+      //   {
+      //     // Offset label scale since RN doesn't support transform origin
+      //     translateX: this.state.labeled.interpolate({
+      //       inputRange: [0, 1],
+      //       outputRange: [
+      //         -(1 - MINIMIZED_LABEL_FONT_SIZE / MAXIMIZED_LABEL_FONT_SIZE) *
+      //           (this.state.labelLayout.width / 2),
+      //         0,
+      //       ],
+      //     }),
+      //   },
+      // ],
     };
 
     const inputStyles = [
@@ -433,20 +434,20 @@ class TextField extends React.Component<Props> {
             // This gives the effect of animating the color, but allows us to use native driver
             <View
               pointerEvents="none"
-              style={[
-                StyleSheet.absoluteFill,
-                {
-                  opacity:
-                    // Hide the label in minimized state until we measure its width
-                    this.state.value || this.state.focused
-                      ? this.state.labelLayout.measured
-                        ? 1
-                        : 0
-                      : 1,
-                },
-              ]}
+              // style={[
+              //   StyleSheet.absoluteFill,
+              //   {
+              //     opacity:
+              //       // Hide the label in minimized state until we measure its width
+              //       this.state.value || this.state.focused
+              //         ? this.state.labelLayout.measured
+              //           ? 1
+              //           : 0
+              //         : 1,
+              //   },
+              // ]}
             >
-              <AnimatedText
+              {/* <AnimatedText
                 onLayout={(e: LayoutChangeEvent) =>
                   this.setState({
                     labelLayout: {
@@ -470,7 +471,7 @@ class TextField extends React.Component<Props> {
                 numberOfLines={1}
               >
                 {label}
-              </AnimatedText>
+              </AnimatedText> */}
               <AnimatedText
                 style={[
                   styles.placeholder,
@@ -479,6 +480,7 @@ class TextField extends React.Component<Props> {
                   {
                     color: placeholderColor,
                     opacity: hasActiveOutline ? this.state.labeled : 1,
+                    fontSize: MINIMIZED_LABEL_FONT_SIZE,
                   },
                 ]}
                 numberOfLines={1}
@@ -558,8 +560,8 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
   },
   placeholder: {
-    position: "absolute",
-    left: 0,
+    // position: "absolute",
+    // left: 0,
   },
   underline: {
     position: "absolute",
