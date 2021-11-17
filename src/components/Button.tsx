@@ -168,9 +168,7 @@ const Button: React.FC<Props> = ({
               style={iconStyle}
             />
           ) : null}
-          <Text style={[textStyle, typography.button]}>
-            {children}
-          </Text>
+          <Text style={[textStyle, typography.button]}>{children}</Text>
         </View>
       </Touchable>
     </Elevation>
@@ -179,7 +177,7 @@ const Button: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   button: {
-    minWidth: 64,
+    minHeight: 64,
     borderStyle: "solid",
   },
   content: {
