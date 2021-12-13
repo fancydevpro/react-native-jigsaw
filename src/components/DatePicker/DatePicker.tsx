@@ -61,6 +61,7 @@ const DatePicker: React.FC<Props> = ({
   mode = "date",
   format,
   backgroundColorIOS = "rgba(35, 43, 63, 0.9)",
+  hitSlop,
   ...props
 }) => {
   const [pickerVisible, setPickerVisible] = React.useState(false);
@@ -93,7 +94,11 @@ const DatePicker: React.FC<Props> = ({
 
   return (
     <View style={[styles.container, style]}>
-      <Touchable disabled={disabled} onPress={toggleVisibility}>
+      <Touchable
+        disabled={disabled}
+        hitSlop={hitSlop}
+        onPress={toggleVisibility}
+      >
         <View pointerEvents="none">
           <TextField
             {...props}
