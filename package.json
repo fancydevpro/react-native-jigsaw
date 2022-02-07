@@ -1,6 +1,6 @@
 {
   "name": "@fancydevpro/draftbit-ui",
-  "version": "39.7.1-patch-datepicker-touchable-area",
+  "version": "39.7.1-patch-datepicker-text-android",
   "description": "Draftbit UI Library",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
