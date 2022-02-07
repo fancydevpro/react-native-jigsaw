@@ -109,14 +109,25 @@ class TextField extends React.Component<Props> {
       }
     }
 
-    if (
-      prevState.focused !== this.state.focused ||
-      prevProps.label !== this.props.label
-    ) {
+    // if (
+    //   prevState.focused !== this.state.focused ||
+    //   prevProps.label !== this.props.label
+    // ) {
+    //   // Show placeholder text only if the input is focused, or has error, or there's no label
+    //   // We don't show placeholder if there's a label because the label acts as placeholder
+    //   // When focused, the label moves up, so we can show a placeholder
+    //   if (this.state.focused || this.props.error || !this.props.label) {
+    //     this._showPlaceholder();
+    //   } else {
+    //     this._hidePlaceholder();
+    //   }
+    // }
+
+    if (prevState.focused !== this.state.focused) {
       // Show placeholder text only if the input is focused, or has error, or there's no label
       // We don't show placeholder if there's a label because the label acts as placeholder
       // When focused, the label moves up, so we can show a placeholder
-      if (this.state.focused || this.props.error || !this.props.label) {
+      if (this.state.focused) {
         this._showPlaceholder();
       } else {
         this._hidePlaceholder();
@@ -505,9 +516,7 @@ class TextField extends React.Component<Props> {
               this._root = c;
             },
             onChange: this._handleChangeText,
-            placeholder: label
-              ? this.state.placeholder
-              : this.props.placeholder,
+            placeholder: this.state.placeholder,
             placeholderTextColor: placeholderColor,
             editable: !disabled,
             selectionColor: activeColor,
