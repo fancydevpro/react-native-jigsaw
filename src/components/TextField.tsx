@@ -90,7 +90,7 @@ class TextField extends React.Component<Props> {
     }
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  componentDidUpdate(_: Props, prevState: State) {
     if (
       prevState.focused !== this.state.focused ||
       prevState.value !== this.state.value
