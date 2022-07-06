@@ -27,7 +27,7 @@ import { ResizeModeType } from "./ResizeMode";
 const screenWidth = Dimensions.get("window").width;
 
 interface Props {
-  images: string[] | Blob[];
+  images: string[];
   aspectRatio?: number;
   swiperPalette?: "surface" | "non-sruface";
   resizeMode?: ResizeModeType;

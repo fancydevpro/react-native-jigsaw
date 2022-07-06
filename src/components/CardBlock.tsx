@@ -17,7 +17,7 @@ import theme from "../styles/DefaultTheme";
 import { justificationType } from "./Justification";
 
 interface Props {
-  image?: string | Blob;
+  image?: string;
   title?: string;
   leftDescription?: string;
   rightDescription?: string;

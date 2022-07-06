@@ -20,7 +20,7 @@ interface Props {
   title?: string;
   subtitle?: string;
   multilineSubtitle?: boolean;
-  image?: string | Blob;
+  image?: string;
   right?: () => React.ReactNode;
   style?: StyleProp<ViewStyle>;
   theme: typeof theme;

@@ -14,7 +14,7 @@ interface Props {
   title?: string;
   subtitle?: string;
   caption?: string;
-  image: string | Blob;
+  image: string;
   style?: StyleProp<ViewStyle>;
   theme: typeof theme;
 }

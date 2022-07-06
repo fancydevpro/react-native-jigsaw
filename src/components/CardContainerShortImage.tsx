@@ -15,7 +15,7 @@ import Config from "./Config";
 import theme from "../styles/DefaultTheme";
 
 interface Props {
-  image?: string | Blob;
+  image?: string;
   title?: string;
   subtitle?: string;
   mode?: "right" | "left";

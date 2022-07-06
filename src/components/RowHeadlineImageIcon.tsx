@@ -10,7 +10,7 @@ import { StyleProp, ViewStyle } from "react-native";
 
 interface Props {
   title?: string;
-  image: string | Blob;
+  image: string;
   subtitle?: string;
   multilineSubtitle?: boolean;
   icon: string;

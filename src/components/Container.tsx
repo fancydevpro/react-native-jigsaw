@@ -17,7 +17,7 @@ interface Props {
   borderColor?: string;
   borderWidth?: number;
   backgroundColor?: string;
-  backgroundImage?: string | Blob;
+  backgroundImage?: string;
   backgroundImageResizeMode?: ResizeModeType;
   elevation?: number;
   style?: StyleProp<ViewStyle>;
